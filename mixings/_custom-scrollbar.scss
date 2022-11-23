@@ -1,0 +1,30 @@
+
+
+/* Modifica el diseño del scrollbar */
+@mixin custom-scrollbar($bg:#f5f5f5, $color:rgb(199, 199, 199), $active: true, $hover: true){
+    overflow: auto;
+    &::-webkit-scrollbar-track {
+        background-color: $bg;
+        border-radius: 5px;
+    }
+    &::-webkit-scrollbar {
+        width: 10px;
+    }
+    &::-webkit-scrollbar,
+    &::-webkit-scrollbar-thumb {
+        background-color: $color;
+        border-radius: 30px;
+        transition: all linear .3s;
+        @if($hover){
+            &:hover{
+            cursor: pointer;
+            background-color: lighten($color, 5%);
+            }
+        }
+        @if($active){
+            &:active{
+            background-color: lighten($color, 10%);
+            }
+        }
+    }
+}

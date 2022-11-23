@@ -1,0 +1,24 @@
+@mixin line-animation($pseudo: 'before', $y: 0, $x: 0, $origin: 'x', $width: 100%, $size: 1px, $color: rgba(white, .125), $hover: rgba(white, .125), $animation: all linear .3s){
+    position: relative;
+    &:hover::#{$pseudo}{
+        background-color: $hover;
+        @if  $origin == 'x'{ width: $width; }
+        @if  $origin == 'y'{ height: $width; }
+    }
+
+    &::#{$pseudo}{
+        content: "";
+        position: absolute;
+        background-color: $color;
+        transform: translateX($x) translateY($y);
+        transition: $animation;
+        width: 0;
+        height: 0;
+
+        @if $origin == 'x' { height: $size; }
+        @if $origin == 'y'{ width: $size; }
+
+        @content;
+    }
+}
+
